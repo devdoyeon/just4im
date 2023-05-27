@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'pretendardBlack';
+  src: url('../fonts/Pretendard-Black.otf') format('opentype');
+}
+@font-face {
+  font-family: 'pretendardB';
+  src: url('../fonts/Pretendard-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'pretendardM';
+  src: url('../fonts/Pretendard-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'pretendardR';
+  src: url('../fonts/Pretendard-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'pretendardL';
+  src: url('../fonts/Pretendard-Light.otf') format('opentype');
+}
