@@ -56,14 +56,14 @@ app.get('/official_data', (req, res) => {
 });
 
 //~ 화보 < 순서 확인해서 endPoint 다시 정렬하기
-// 아레나/비하인드
-app.get('/arena_behind', (req, res) => {
-  getImages(res, 'photoShoot/arena_behind/');
-});
-
 // 아레나
 app.get('/arena', (req, res) => {
   getImages(res, 'photoShoot/arena/');
+});
+
+// 아레나/비하인드
+app.get('/arena_behind', (req, res) => {
+  getImages(res, 'photoShoot/arena_behind/');
 });
 
 // 버버리/비하인드
@@ -71,14 +71,14 @@ app.get('/burberry_behind', (req, res) => {
   getImages(res, 'photoShoot/burberry_behind/');
 });
 
-// 코스모폴리탄/비하인드
-app.get('/cosmopolitan_behind', (req, res) => {
-  getImages(res, 'photoShoot/cosmopolitan_behind/');
-});
-
 // 코스모폴리탄
 app.get('/cosmopolitan', (req, res) => {
   getImages(res, 'photoShoot/cosmopolitan/');
+});
+
+// 코스모폴리탄/비하인드
+app.get('/cosmopolitan_behind', (req, res) => {
+  getImages(res, 'photoShoot/cosmopolitan_behind/');
 });
 
 // 2020.04.19 맵스
@@ -131,14 +131,14 @@ app.get('/maps_221122', (req, res) => {
   getImages(res, 'photoShoot/maps_221122/');
 });
 
-// 싱글즈/비하인드
-app.get('/singles_behind', (req, res) => {
-  getImages(res, 'photoShoot/singles_behind/');
-});
-
 // 싱글즈
 app.get('/singles', (req, res) => {
   getImages(res, 'photoShoot/singles/');
+});
+
+// 싱글즈/비하인드
+app.get('/singles_behind', (req, res) => {
+  getImages(res, 'photoShoot/singles_behind/');
 });
 
 // 어반디케이

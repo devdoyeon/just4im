@@ -1,19 +1,18 @@
-import $ from 'jquery';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay, Navigation } from 'swiper';
-import { getSelfiesAPI, getAlbumCoversAPI } from 'js/api';
+import Gnb from 'components/Gnb';
+import { getSelfie, getAlbumCover } from 'js/api';
 // IMAGE
 import logo from 'images/WhiteLogo.svg';
 import scrollDownIcon from 'images/scrollDown.svg';
 import profileImg from 'images/profileImg.jpg';
 
 const Main = () => {
-  const [gnb, setGnb] = useState(false);
   const [load, setLoad] = useState(true);
   const [selfieArr, setSelfieArr] = useState([]);
   const [albumCoverArr, setAlbumCoverArr] = useState([]);
-  const [scrollY, setScrollY] = useState(0);
   const albumDescription = [
     { album: 'SINGLE / 참여 앨범', title: 'Flower Cafe', date: '2015.11.11' },
     { album: 'SINGLE', title: '마들렌', date: '2016.10.20' },
@@ -28,59 +27,45 @@ const Main = () => {
     },
   ];
 
+  const navigate = useNavigate();
+
   let prevent = false;
 
   SwiperCore.use([Pagination, Autoplay, Navigation]);
 
-  const scrollYFn = async () => {
-    const scrollYHandler = () => setScrollY(window.pageYOffset);
-    const watch = () => window.addEventListener('scroll', scrollYHandler);
-    watch();
-    return () => window.removeEventListener('scroll', scrollYHandler);
-  };
-
   useEffect(() => {
-    if (scrollY > 500) setGnb(true);
-    if (scrollY > 800) $('.main-name').addClass('animate');
-    else setGnb(false);
-  }, [scrollY]);
-
-  useEffect(() => {
-    scrollYFn();
     setTimeout(() => {
       setLoad(false);
       window.scrollTo(0, 0);
     }, 3000);
   }, []);
 
-  const getSelfie = async () => {
-    const result = await getSelfiesAPI();
+  const getSelfiesAPI = async () => {
+    const result = await getSelfie();
     if (typeof result === 'object') {
       const arr = [...result?.data?.imageUrls];
       arr.shift();
       setSelfieArr(arr);
-      console.log(arr);
     } else return;
   };
 
-  const getAlbumCover = async () => {
+  const getAlbumCoversAPI = async () => {
     if (prevent) return;
     prevent = true;
     setTimeout(() => {
       prevent = false;
     }, 100);
-    const result = await getAlbumCoversAPI();
+    const result = await getAlbumCover();
     if (typeof result === 'object') {
       const arr = [...result?.data?.imageUrls];
       arr.shift();
       setAlbumCoverArr(arr);
-      getSelfie();
-      console.log(arr);
+      getSelfiesAPI();
     } else return;
   };
 
   useEffect(() => {
-    getAlbumCover();
+    getAlbumCoversAPI();
   }, []);
 
   return (
@@ -89,9 +74,7 @@ const Main = () => {
         <div className='main-content column'>
           <img src={logo} alt='로고' />
         </div>
-        <div className={`gnb row ${gnb ? 'active' : ''}`}>
-          <img src={logo} alt='로고' />
-        </div>
+        <Gnb />
         <img
           src={scrollDownIcon}
           alt='스크롤 다운 아이콘'
@@ -102,7 +85,7 @@ const Main = () => {
             <Swiper
               className='main-swiper'
               loop={true}
-              autoplay={{ delay: 8000, disableOnInteraction: false }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
               initialSlide={1}
               speed={2000}
               modules={[Autoplay]}
@@ -159,10 +142,16 @@ const Main = () => {
               })}
             </Swiper>
           </div>
-          {/* <h1 className='support-header'>Support</h1>
-          <div className='wrapper support-wrapper'></div>
-          <h1 className='contact-header'>Contact</h1>
-          <div className='wrapper contact-wrapper'></div> */}
+          <div className='column more-contents'>
+            <h3>MORE CONTENTS</h3>
+            <div className='row btn-wrap'>
+              <button onClick={() => navigate('/jacket')}>JACKET</button>
+              <button onClick={() => navigate('/ps')}>P.S.</button>
+              <button onClick={() => navigate('/photo-shoot')}>
+                PHOTOSHOOT
+              </button>
+            </div>
+          </div>
         </div>
         <div className='footer'>개발자가 임창균을 사랑하는 방법</div>
       </div>

@@ -222,9 +222,29 @@
 .container .main-wrap .content .wrapper.profile-wrapper .description li:last-child {
   margin-bottom: 0;
 }
+.container .main-wrap .content .more-contents h3 {
+  margin-bottom: 30px;
+  font-size: 50px;
+  font-family: "pretendardM", "맑은 고딕", "sans-serif";
+}
+.container .main-wrap .content .more-contents .btn-wrap {
+  width: 100%;
+}
+.container .main-wrap .content .more-contents .btn-wrap button {
+  font-family: "pretendardM", "맑은 고딕", "sans-serif";
+  font-size: 20px;
+  margin-right: 50px;
+  padding: 20px 50px;
+  width: 300px;
+  border-radius: 6px;
+  border: 1px solid white;
+}
+.container .main-wrap .content .more-contents .btn-wrap button:last-child {
+  margin-right: 0;
+}
 .container .main-wrap .footer {
   width: 100%;
-  height: 200px;
+  height: 400px;
   background-color: rgb(7, 7, 7);
 }
 .container .load {
