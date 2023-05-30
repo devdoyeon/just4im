@@ -14,9 +14,7 @@ const PS = () => {
         </div>
         <h3>P.S.</h3>
       </div>
-      <div className='content-box'>
-        
-      </div>
+      <div className='content-box'></div>
     </div>
   );
 };
