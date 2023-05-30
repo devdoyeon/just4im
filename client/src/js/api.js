@@ -16,6 +16,14 @@ export const getAlbumCover = async () => {
   }
 };
 
+export const getOfficialData = async () => {
+  try {
+    return await axios.get(`/api/official_data`)
+  } catch (error) {
+    return 'error'
+  }
+}
+
 export const getArena = async () => {
   try {
     return await axios.get(`/api/arena`);

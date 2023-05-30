@@ -8,9 +8,9 @@ import { getSelfie, getAlbumCover } from 'js/api';
 import logo from 'images/WhiteLogo.svg';
 import scrollDownIcon from 'images/scrollDown.svg';
 import profileImg from 'images/profileImg.jpg';
+import Footer from 'components/Footer';
 
 const Main = () => {
-  const [load, setLoad] = useState(true);
   const [selfieArr, setSelfieArr] = useState([]);
   const [albumCoverArr, setAlbumCoverArr] = useState([]);
   const albumDescription = [
@@ -32,13 +32,6 @@ const Main = () => {
   let prevent = false;
 
   SwiperCore.use([Pagination, Autoplay, Navigation]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoad(false);
-      window.scrollTo(0, 0);
-    }, 3000);
-  }, []);
 
   const getSelfiesAPI = async () => {
     const result = await getSelfie();
@@ -85,9 +78,8 @@ const Main = () => {
             <Swiper
               className='main-swiper'
               loop={true}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              initialSlide={1}
-              speed={2000}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              speed={3000}
               modules={[Autoplay]}
               centeredSlides={true}
               allowTouchMove={false}>
@@ -145,7 +137,7 @@ const Main = () => {
           <div className='column more-contents'>
             <h3>MORE CONTENTS</h3>
             <div className='row btn-wrap'>
-              <button onClick={() => navigate('/jacket')}>JACKET</button>
+              <button onClick={() => navigate('/official-data')}>OFFICIAL DATA</button>
               <button onClick={() => navigate('/ps')}>P.S.</button>
               <button onClick={() => navigate('/photo-shoot')}>
                 PHOTOSHOOT
@@ -153,11 +145,8 @@ const Main = () => {
             </div>
           </div>
         </div>
-        <div className='footer'>개발자가 임창균을 사랑하는 방법</div>
       </div>
-      <div className={`load column ${load ? 'active' : ''}`}>
-        <img src={logo} alt='로고' />
-      </div>
+      <Footer />
     </>
   );
 };

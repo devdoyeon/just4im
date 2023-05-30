@@ -108,3 +108,12 @@ $lightFont: 'pretendardL', '맑은 고딕', 'sans-serif';
     transform: translateX(-600px);
   }
 }
+
+@keyframes movingLeftAllView {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-1000vw);
+  }
+}
